@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace Models.Migrations
 {
     /// <inheritdoc />
-    public partial class initiale : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -48,6 +50,26 @@ namespace Models.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Produits",
+                columns: table => new
+                {
+                    ProduitId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nom = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PrixVendu = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Quantite = table.Column<int>(type: "int", nullable: false),
+                    PrixCoutant = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Disponible = table.Column<bool>(type: "bit", nullable: false),
+                    Categorie = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Produits", x => x.ProduitId);
                 });
 
             migrationBuilder.CreateTable(
@@ -156,6 +178,46 @@ namespace Models.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Utilisateurs",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nom = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Prenom = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Matricule = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Utilisateurs", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Utilisateurs_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Produits",
+                columns: new[] { "ProduitId", "Categorie", "Description", "Disponible", "Image", "Nom", "PrixCoutant", "PrixVendu", "Quantite" },
+                values: new object[,]
+                {
+                    { 1, 0, " Le Caramilk est une barre chocolatée emblématique de la marque Cadbury, qui combine une riche et crémeuse chocolat au lait avec un délicieux cœur de caramel fondant. Sa texture unique est à la fois lisse et fondante, créant une expérience sucrée et gourmande. Le caramel, caché à l'intérieur, apporte une douceur subtile et une note sucrée intense qui se marie parfaitement avec le chocolat au lait.", true, "../../Images/Caramilk.png", "Caramilk", 3m, 2.75m, 5 },
+                    { 2, 0, "boisson électrolyte rafraîchissante au goût fruité", true, "../../Images/Gatorade Bleu Cool.png", "Gatorade Bleu", 3m, 3m, 4 },
+                    { 3, 0, "boisson électrolyte rafraîchissante au goût fruité", true, "../../Images/Guru Original.png", "Guru", 3m, 4.50m, 6 },
+                    { 4, 2, "boisson électrolyte rafraîchissante au goût fruité", true, "../../Images/KitKat.png", "KitKat", 3m, 2.25m, 25 },
+                    { 5, 0, "boisson électrolyte rafraîchissante au goût fruité", true, "../../Images/Lait protéiné Fairlife Chocolat.png", "Lait protéiné Fairlife", 3m, 4.50m, 2 },
+                    { 6, 1, "boisson électrolyte rafraîchissante au goût fruité", true, "../../Images/McCain Pizza Pochette au pepperoni.png", "Pizza Pochette au pepperoni", 3m, 2.50m, 46 },
+                    { 7, 0, "boisson électrolyte rafraîchissante au goût fruité", true, "../../Images/Monster Original.png", "Monster Original", 3m, 3.50m, 4 },
+                    { 8, 0, "boisson électrolyte rafraîchissante au goût fruité", true, "../../Images/Peace Tea Original.png", "Peace Tea Original", 3m, 1.50m, 16 },
+                    { 9, 1, "boisson électrolyte rafraîchissante au goût fruité", true, "../../Images/Pogo.png", "Pogo", 3m, 3.50m, 65 },
+                    { 10, 0, "boisson électrolyte rafraîchissante au goût fruité", true, "../../Images/Red Bull Original.png", "Red Bull Original", 3m, 3m, 23 },
+                    { 11, 1, "boisson électrolyte rafraîchissante au goût fruité", true, "../../Images/Soupe aux nouilles Shin.png", "Soupr aux nouilles Shin", 3m, 4.50m, 12 }
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -194,6 +256,11 @@ namespace Models.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Utilisateurs_UserId",
+                table: "Utilisateurs",
+                column: "UserId");
         }
 
         /// <inheritdoc />
@@ -213,6 +280,12 @@ namespace Models.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Produits");
+
+            migrationBuilder.DropTable(
+                name: "Utilisateurs");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

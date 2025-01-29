@@ -1,8 +1,24 @@
-﻿@model IEnumerable<Models.Models.Produit>
+﻿@model LapinCouvertMVC.ViewModels.InventaireViewModel
 
 @{
     ViewData["Title"] = "Index";
 }
+<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready(function () {
+        let spanElements = $(".page-link");
+        for (let i = 0; i < spanElements.length; i++) {
+            let spanElement = spanElements[i];
+            spanElement.onclick = function (evt) {
+                console.log(spanElement.getAttribute("data-page-id"));
+                $("#pageIndex").attr("value", spanElement.getAttribute("data-page-id"));
+                $("#formSelectionPage").submit();
+            }
+        }
+    });
+</script>
+
 
 <h1>Index</h1>
 
@@ -13,30 +29,30 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Nom)
+                @Html.DisplayNameFor(model => model.Inventaire.FirstOrDefault().Nom)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PrixVendu)
+                @Html.DisplayNameFor(model => model.Inventaire.FirstOrDefault().PrixVendu)
             </th>
             
             <th>
-                @Html.DisplayNameFor(model => model.Image)
+                @Html.DisplayNameFor(model => model.Inventaire.FirstOrDefault().Image)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Quantite)
+                @Html.DisplayNameFor(model => model.Inventaire.FirstOrDefault().Quantite)
             </th>
            
             <th>
-                @Html.DisplayNameFor(model => model.Disponible)
+                @Html.DisplayNameFor(model => model.Inventaire.FirstOrDefault().Disponible)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Categorie)
+                @Html.DisplayNameFor(model => model.Inventaire.FirstOrDefault().Categorie)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model.Inventaire) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Nom)
@@ -67,3 +83,51 @@
 }
     </tbody>
 </table>
+
+<form id="formSelectionPage" asp-action="ChangerPage" method="get">
+    <input asp-for="SelectedPageIndex" type="hidden" id="pageIndex" class="form-control" readonly />
+</form>
+
+<div id="content-pagination">
+    <nav>
+        <ul class="pagination">
+            @if (Model.SelectedPageIndex != 0)
+            {
+                <li class="page-item"><span data-page-id="@(Model.SelectedPageIndex - 1)" class="page-link">Précédent</span></li>
+            }
+            @for (int i = 1; i <= Model.NombrePageTotale; i++)
+            {
+
+                <li class="page-item @(i== Model.SelectedPageIndex + 1 ? "active" : " ")"><span class="page-link" data-page-id="@(i - 1)">@i</span></li>
+            }
+            @if (Model.SelectedPageIndex != Model.NombrePageTotale - 1)
+            {
+                <li class="page-item"><span class="page-link" data-page-id="@(Model.SelectedPageIndex + 1)">Suivant</span></li>
+            }
+
+        </ul>
+       @*  <ul class="pagination">
+            @if (Model.SelectedPageIndex != 0)
+            {
+                <li class="page-item"><span data-page-id="@(Model.SelectedPageIndex - 1)" class="page-link">Précédent</span></li>
+            }
+            @for (int i = 0; i < Model.Inventaire.Count / 3; i++)
+            {
+                @if (i == Model.SelectedPageIndex)
+                {
+                    <li class="page-item active"><span class="page-link" data-page-id="@i">@(i + 1)</span></li>
+                }
+                else
+                {
+                    <li class="page-item">
+                        <span class="page-link" data-page-id="@i">@(i + 1)</span>
+                    </li>
+                }
+            }
+            @if (Model.SelectedPageIndex != Model.Inventaire.Count / 3)
+            {
+                <li class="page-item"><span class="page-link" data-page-id="@(Model.SelectedPageIndex + 1)">Prochain</span></li>
+            }
+        </ul> *@
+    </nav>
+</div>

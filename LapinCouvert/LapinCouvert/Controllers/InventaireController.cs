@@ -1,9 +1,12 @@
 ﻿using LapinCouvert.Data;
+using LapinCouvertMVC.ViewModels;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Models.Models;
+using System.Drawing.Printing;
 
 namespace LapinCouvertMVC.Controllers
 {
@@ -17,7 +20,25 @@ namespace LapinCouvertMVC.Controllers
         // GET: InventaireController
         public async Task<IActionResult> Index()
         {
-            return View(await _dbContext.Produits.ToListAsync());
+            var inventaire = await _dbContext.Produits.OrderBy(produit => produit.Nom).ToListAsync();
+            var inventairePage = new List<Produit>();
+            inventairePage.AddRange(inventaire.Skip(0 * 10).Take(10).ToList());
+            var inventaireViewModel = new InventaireViewModel() { Inventaire = inventairePage, SelectedPageIndex = 0, NombrePageTotale = (int)Math.Ceiling(inventaire.Count / (double)10) };
+
+            return View(inventaireViewModel);
+        }
+
+        // GET: Change de page
+        public async Task<IActionResult> ChangerPage(InventaireViewModel inventaireViewModel)
+        {
+            var inventaire = await _dbContext.Produits.OrderBy(produit => produit.Nom).ToListAsync();
+            var inventairePage = new List<Produit>();
+            inventairePage.AddRange(inventaire.Skip(inventaireViewModel.SelectedPageIndex * 10).Take(10).ToList());
+
+            inventaireViewModel.Inventaire = inventairePage;
+            inventaireViewModel.NombrePageTotale = (int)Math.Ceiling(inventaire.Count / (double)10);
+
+            return View("Index", inventaireViewModel);
         }
 
         // GET: InventaireController/Details/5
