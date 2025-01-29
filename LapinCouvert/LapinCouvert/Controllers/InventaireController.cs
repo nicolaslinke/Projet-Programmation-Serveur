@@ -1,14 +1,23 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using LapinCouvert.Data;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using Models.Models;
 
 namespace LapinCouvertMVC.Controllers
 {
     public class InventaireController : Controller
     {
-        // GET: InventaireController
-        public ActionResult Index()
+        private ApplicationDbContext _dbContext;
+        public InventaireController(ApplicationDbContext dbContext)
         {
-            return View();
+            _dbContext = dbContext;
+        }
+        // GET: InventaireController
+        public async Task<IActionResult> Index()
+        {
+            return View(await _dbContext.Produits.ToListAsync());
         }
 
         // GET: InventaireController/Details/5
@@ -20,24 +29,24 @@ namespace LapinCouvertMVC.Controllers
         // GET: InventaireController/Create
         public ActionResult Create()
         {
+            ViewBag.Categories = new SelectList(Enum.GetValues(typeof(CategorieEnum)));
             return View();
         }
 
         // POST: InventaireController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<IActionResult> Create([Bind("ProduitId,Nom,PrixVendu,Description,Image,Quantite,PrixCoutant,Disponible,Categorie")] Produit produit)
         {
-            try
+            if (ModelState.IsValid)
             {
+                _dbContext.Add(produit);
+                await _dbContext.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
 
+            }
+            return View(produit);
+        }
         // GET: InventaireController/Edit/5
         public ActionResult Edit(int id)
         {

@@ -4,6 +4,7 @@ using LapinCouvert.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Models.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250129160726_Seed")]
+    partial class Seed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -232,28 +235,28 @@ namespace Models.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProduitId"));
 
-                    b.Property<int?>("Categorie")
+                    b.Property<int>("Categorie")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool?>("Disponible")
-                        .IsRequired()
+                    b.Property<bool>("Disponible")
                         .HasColumnType("bit");
 
                     b.Property<string>("Image")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nom")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("PrixCoutant")
+                    b.Property<decimal>("Prix")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal>("PrixVendu")
+                    b.Property<decimal>("PrixCoutant")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("Quantite")
@@ -272,8 +275,8 @@ namespace Models.Migrations
                             Disponible = true,
                             Image = "../../Images/Caramilk.png",
                             Nom = "Caramilk",
+                            Prix = 2.75m,
                             PrixCoutant = 3m,
-                            PrixVendu = 2.75m,
                             Quantite = 5
                         },
                         new
@@ -284,8 +287,8 @@ namespace Models.Migrations
                             Disponible = true,
                             Image = "../../Images/Gatorade Bleu Cool.png",
                             Nom = "Gatorade Bleu",
+                            Prix = 3m,
                             PrixCoutant = 3m,
-                            PrixVendu = 3m,
                             Quantite = 4
                         },
                         new
@@ -296,8 +299,8 @@ namespace Models.Migrations
                             Disponible = true,
                             Image = "../../Images/Guru Original.png",
                             Nom = "Guru",
+                            Prix = 4.50m,
                             PrixCoutant = 3m,
-                            PrixVendu = 4.50m,
                             Quantite = 6
                         },
                         new
@@ -308,8 +311,8 @@ namespace Models.Migrations
                             Disponible = true,
                             Image = "../../Images/KitKat.png",
                             Nom = "KitKat",
+                            Prix = 2.25m,
                             PrixCoutant = 3m,
-                            PrixVendu = 2.25m,
                             Quantite = 25
                         },
                         new
@@ -320,8 +323,8 @@ namespace Models.Migrations
                             Disponible = true,
                             Image = "../../Images/Lait protéiné Fairlife Chocolat.png",
                             Nom = "Lait protéiné Fairlife",
+                            Prix = 4.50m,
                             PrixCoutant = 3m,
-                            PrixVendu = 4.50m,
                             Quantite = 2
                         },
                         new
@@ -332,8 +335,8 @@ namespace Models.Migrations
                             Disponible = true,
                             Image = "../../Images/McCain Pizza Pochette au pepperoni.png",
                             Nom = "Pizza Pochette au pepperoni",
+                            Prix = 2.50m,
                             PrixCoutant = 3m,
-                            PrixVendu = 2.50m,
                             Quantite = 46
                         },
                         new
@@ -344,8 +347,8 @@ namespace Models.Migrations
                             Disponible = true,
                             Image = "../../Images/Monster Original.png",
                             Nom = "Monster Original",
+                            Prix = 3.50m,
                             PrixCoutant = 3m,
-                            PrixVendu = 3.50m,
                             Quantite = 4
                         },
                         new
@@ -356,8 +359,8 @@ namespace Models.Migrations
                             Disponible = true,
                             Image = "../../Images/Peace Tea Original.png",
                             Nom = "Peace Tea Original",
+                            Prix = 1.50m,
                             PrixCoutant = 3m,
-                            PrixVendu = 1.50m,
                             Quantite = 16
                         },
                         new
@@ -368,8 +371,8 @@ namespace Models.Migrations
                             Disponible = true,
                             Image = "../../Images/Pogo.png",
                             Nom = "Pogo",
+                            Prix = 3.50m,
                             PrixCoutant = 3m,
-                            PrixVendu = 3.50m,
                             Quantite = 65
                         },
                         new
@@ -380,8 +383,8 @@ namespace Models.Migrations
                             Disponible = true,
                             Image = "../../Images/Red Bull Original.png",
                             Nom = "Red Bull Original",
+                            Prix = 3m,
                             PrixCoutant = 3m,
-                            PrixVendu = 3m,
                             Quantite = 23
                         },
                         new
@@ -392,8 +395,8 @@ namespace Models.Migrations
                             Disponible = true,
                             Image = "../../Images/Soupe aux nouilles Shin.png",
                             Nom = "Soupr aux nouilles Shin",
+                            Prix = 4.50m,
                             PrixCoutant = 3m,
-                            PrixVendu = 4.50m,
                             Quantite = 12
                         });
                 });
