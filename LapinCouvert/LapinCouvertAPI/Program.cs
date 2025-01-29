@@ -1,4 +1,5 @@
 using LapinCouvert.Data;
+using LapinCouvertAPI.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -78,6 +79,9 @@ builder.Services.AddSwaggerGen(opt =>
         }
     });
 });
+
+//Injection de dépendance
+builder.Services.AddScoped<UtilisateurService>();
 
 var app = builder.Build();
 

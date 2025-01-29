@@ -1,4 +1,5 @@
 ﻿using API.DTOs;
+using LapinCouvertAPI.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -16,11 +17,13 @@ namespace LapinCouvertAPI.Controllers
 
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UtilisateurService _utilisateurService;
 
-        public UtilisateurController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+        public UtilisateurController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, UtilisateurService utilisateurService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _utilisateurService = utilisateurService;
         }
 
         [HttpPost]
@@ -43,6 +46,8 @@ namespace LapinCouvertAPI.Controllers
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, new { Error = identityResult.Errors });
             }
+
+            await _utilisateurService.CreateUtilisateur(utilisateur, inscriptionDTO.Nom, inscriptionDTO.Prenom, inscriptionDTO.Matricule);
 
             return Ok();
         }
