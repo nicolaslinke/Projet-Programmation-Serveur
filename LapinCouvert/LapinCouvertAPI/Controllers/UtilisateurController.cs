@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using Models.Models;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -27,7 +28,7 @@ namespace LapinCouvertAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Insciption(InscriptionDTO inscriptionDTO)
+        public async Task<ActionResult> Inscription(InscriptionDTO inscriptionDTO)
         {
 
             if (inscriptionDTO.MotDePasse != inscriptionDTO.MotDePasseConfirmer)
@@ -61,6 +62,7 @@ namespace LapinCouvertAPI.Controllers
             {
                 Claim? nameIdentifierClaim = User.Claims?.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
 
+                Utilisateur u = await _utilisateurService.GetUtilisateurByUserId(nameIdentifierClaim.Value);
                 // Note: On ajoute simplement le NameIdentifier dans les claims. Il n'y aura pas de rôle pour les utilisateurs du WebAPI.
                 List<Claim> authClaims = new List<Claim>();
                 authClaims.Add(nameIdentifierClaim);
@@ -80,10 +82,10 @@ namespace LapinCouvertAPI.Controllers
                 );
 
                 string tokenString = new JwtSecurityTokenHandler().WriteToken(token);
-
+                string userName = u.Prenom + " " + u.Nom;
                 // On ne veut JAMAIS retouner une string directement lorsque l'on utilise Angular.
                 // Angular assume que l'on retourne un objet et donne une erreur lorsque le résultat obtenu est une simple string!
-                return Ok(new ConnexionSuccesDTO() { Jeton = tokenString });
+                return Ok(new ConnexionSuccesDTO() { Jeton = tokenString, UserName = userName});
             }
 
             return NotFound(new { Error = "L'utilisateur est introuvable ou le mot de passe ne concorde pas" });
