@@ -1,0 +1,77 @@
+﻿@model Models.Models.Produit
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Produit</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Nom" class="control-label"></label>
+                <input asp-for="Nom" class="form-control" />
+                <span asp-validation-for="Nom" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PrixVendu" class="control-label"></label>
+                <input type="number" asp-for="PrixVendu" class="form-control" />
+                <span asp-validation-for="PrixVendu" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Image" class="control-label"></label>
+                <input asp-for="Image" class="form-control" />
+                <span asp-validation-for="Image" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quantite" class="control-label"></label>
+                <input asp-for="Quantite" class="form-control" />
+                <span asp-validation-for="Quantite" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PrixCoutant" class="control-label"></label>
+                <input type="number" asp-for="PrixCoutant" class="form-control" />
+                <span asp-validation-for="PrixCoutant" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" asp-for="Disponible" />
+                <label class="form-check-label" for="Disponible">
+                    Disponible
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Categorie" class="control-label"></label>
+                <select asp-for="Categorie" class="form-control" asp-items="ViewBag.Categories">
+                    <option value =""></option>
+                </select>
+                <span asp-validation-for="Categorie" class="text-danger"></span>
+            </div>
+
+            <br />
+            <br />
+           
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Retour à l'inventaire</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

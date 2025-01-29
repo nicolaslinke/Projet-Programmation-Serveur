@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Models.Data;
+using Models.Models;
 using Models.Models;
 using System.Numerics;
 
@@ -11,6 +13,12 @@ namespace LapinCouvert.Data
             : base(options)
         {
         }
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+            builder.Entity<Produit>().HasData(Seed.SeedProduit());
+        }
+        public DbSet<Produit> Produits { get; set; } = default;
 
         public DbSet<Utilisateur> Utilisateurs { get; set; } = default!;
     }
