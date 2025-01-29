@@ -30,22 +30,5 @@ namespace LapinCouvertAPI.Services
 
             return u;
         }
-
-        public virtual Utilisateur GetUtilisateurFromUserId(string userId)
-        {
-            return _dbContext.Utilisateurs.Single(u => u.UserId == userId);
-        }
-
-        public virtual Utilisateur GetPlayerFromEmail(string userEmail)
-        {
-            var utilisateur = _dbContext.Utilisateurs.SingleOrDefault(u => u.User.Email == userEmail);
-
-            if (utilisateur == null)
-            {
-                throw new InvalidOperationException("Player not found.");
-            }
-
-            return utilisateur;
-        }
     }
 }
