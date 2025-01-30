@@ -1,6 +1,0 @@
-@LapinCouvertAPI_HostAddress = http://localhost:5065
-
-GET {{LapinCouvertAPI_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

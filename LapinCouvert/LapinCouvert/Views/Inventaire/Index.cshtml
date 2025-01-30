@@ -1,8 +1,24 @@
-﻿@model IEnumerable<Models.Models.Produit>
+﻿@model LapinCouvertMVC.ViewModels.ProduitsViewModel
 
 @{
     ViewData["Title"] = "Index";
 }
+<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready(function () {
+        let spanElements = $(".page-link");
+        for (let i = 0; i < spanElements.length; i++) {
+            let spanElement = spanElements[i];
+            spanElement.onclick = function (evt) {
+                console.log(spanElement.getAttribute("data-page-id"));
+                $("#pageIndex").attr("value", spanElement.getAttribute("data-page-id"));
+                $("#formSelectionPage").submit();
+            }
+        }
+    });
+</script>
+
 
 <h1>Index</h1>
 
@@ -13,30 +29,30 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Nom)
+                @Html.DisplayNameFor(model => model.Produits.FirstOrDefault().Nom)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PrixVendu)
+                @Html.DisplayNameFor(model => model.Produits.FirstOrDefault().PrixVendu)
             </th>
             
             <th>
-                @Html.DisplayNameFor(model => model.Image)
+                @Html.DisplayNameFor(model => model.Produits.FirstOrDefault().Image)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Quantite)
+                @Html.DisplayNameFor(model => model.Produits.FirstOrDefault().Quantite)
             </th>
            
             <th>
-                @Html.DisplayNameFor(model => model.Disponible)
+                @Html.DisplayNameFor(model => model.Produits.FirstOrDefault().Disponible)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Categorie)
+                @Html.DisplayNameFor(model => model.Produits.FirstOrDefault().Categorie)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model.Produits) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Nom)
@@ -67,3 +83,28 @@
 }
     </tbody>
 </table>
+
+<form id="formSelectionPage" asp-action="ChangerPage" method="get">
+    <input asp-for="PageSelectionneeIndex" type="hidden" id="pageIndex" class="form-control" readonly />
+</form>
+
+<div id="content-pagination">
+    <nav>
+        <ul class="pagination">
+            @if (Model.PageSelectionneeIndex != 0)
+            {
+                <li class="page-item"><span data-page-id="@(Model.PageSelectionneeIndex - 1)" class="page-link">Précédent</span></li>
+            }
+            @for (int i = 1; i <= Model.NombrePageTotale; i++)
+            {
+
+                <li class="page-item @(i== Model.PageSelectionneeIndex + 1 ? "active" : " ")"><span class="page-link" data-page-id="@(i - 1)">@i</span></li>
+            }
+            @if (Model.PageSelectionneeIndex != Model.NombrePageTotale - 1)
+            {
+                <li class="page-item"><span class="page-link" data-page-id="@(Model.PageSelectionneeIndex + 1)">Suivant</span></li>
+            }
+
+        </ul>
+    </nav>
+</div>

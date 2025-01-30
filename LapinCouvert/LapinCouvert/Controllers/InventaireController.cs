@@ -1,23 +1,47 @@
 ﻿using LapinCouvert.Data;
+using LapinCouvertMVC.Services;
+using LapinCouvertMVC.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Models.Models;
+using System.Drawing.Printing;
 
 namespace LapinCouvertMVC.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class InventaireController : Controller
     {
         private ApplicationDbContext _dbContext;
-        public InventaireController(ApplicationDbContext dbContext)
+        private ProduitsService _produitsService;
+        private PaginationService _paginationService;
+        public InventaireController(ApplicationDbContext dbContext, ProduitsService produitsService, PaginationService paginationService)
         {
             _dbContext = dbContext;
+            _produitsService = produitsService;
+            _paginationService = paginationService;
         }
+
+        private const int PRODUIT_PAR_PAGE = 2;
         // GET: InventaireController
         public async Task<IActionResult> Index()
         {
-            return View(await _dbContext.Produits.ToListAsync());
+            var inventaire = await _produitsService.ObtenirInventaireOrdreNomAsync();
+            var produitsViewModel = _paginationService.PaginationProduits(inventaire, 0, PRODUIT_PAR_PAGE);
+
+            return View(produitsViewModel);
+        }
+
+        // GET: Change de page
+        public async Task<IActionResult> ChangerPage(ProduitsViewModel produitsViewModel)
+        {
+            var inventaire = await _produitsService.ObtenirInventaireOrdreNomAsync();
+            produitsViewModel = _paginationService.PaginationProduits(inventaire, produitsViewModel.PageSelectionneeIndex, PRODUIT_PAR_PAGE);
+
+            return View("Index", produitsViewModel);
         }
 
         // GET: InventaireController/Details/5
@@ -40,8 +64,7 @@ namespace LapinCouvertMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                _dbContext.Add(produit);
-                await _dbContext.SaveChangesAsync();
+                _produitsService.CreateProduit(produit);
                 return RedirectToAction(nameof(Index));
 
             }

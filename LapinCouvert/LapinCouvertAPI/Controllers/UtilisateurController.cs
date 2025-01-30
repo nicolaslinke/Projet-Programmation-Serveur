@@ -55,16 +55,20 @@ namespace LapinCouvertAPI.Controllers
         [HttpPost]
         public async Task<ActionResult> Connexion(ConnexionDTO connexionDTO)
         {
-            var result = await _signInManager.PasswordSignInAsync(connexionDTO.Courriel, connexionDTO.MotDePasse, true, lockoutOnFailure: false);
+            IdentityUser user = await _userManager.FindByNameAsync(connexionDTO.Courriel);
 
-            if (result.Succeeded)
+            if (user != null && await _userManager.CheckPasswordAsync(user, connexionDTO.MotDePasse))
             {
-                Claim? nameIdentifierClaim = User.Claims?.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
-
-                // Note: On ajoute simplement le NameIdentifier dans les claims. Il n'y aura pas de rôle pour les utilisateurs du WebAPI.
+                //Pour les rôles
+                IList<string> roles = await _userManager.GetRolesAsync(user);
                 List<Claim> authClaims = new List<Claim>();
-                authClaims.Add(nameIdentifierClaim);
+                foreach (string role in roles)
+                {
+                    authClaims.Add(new Claim(ClaimTypes.Role, role));
+                }
+                authClaims.Add(new Claim(ClaimTypes.NameIdentifier, user.Id));
 
+                //Pour les jetons
                 SymmetricSecurityKey signingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("C'est tellement la meilleure cle qui a jamais ete cree dans l'histoire de l'humanite (doit etre longue)"));
 
                 string issuer = this.Request.Scheme + "://" + this.Request.Host;
@@ -95,8 +99,9 @@ namespace LapinCouvertAPI.Controllers
             return Ok(new string[] { "Pomme", "Poire", "Banane" });
         }
 
+
         [HttpGet]
-        [Authorize]
+        [Authorize(Roles = "admin")]
         public ActionResult PrivateTest()
         {
             return Ok(new string[] { "PrivatePomme", "PrivatePoire", "PrivateBanane" });
