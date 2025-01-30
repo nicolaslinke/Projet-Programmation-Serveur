@@ -202,6 +202,16 @@ namespace Models.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[] { "1", null, "admin", "ADMIN" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "11111111-1111-1111-1111-111111111111", 0, "a79343c6-183d-42ea-b17b-9b987ab51235", "a@a.a", true, false, null, "A@A.A", "A@A.A", "AQAAAAIAAYagAAAAEFcMXmWKD6aCwoYTCAS51KLQkufJL9ZVMU/fjnsNGQWu9xQufQCPxgWkwInfJLHbbQ==", null, false, "436ad574-e468-4ea1-934f-0dea9955bbc3", false, "a@a.a" });
+
+            migrationBuilder.InsertData(
                 table: "Produits",
                 columns: new[] { "ProduitId", "Categorie", "Description", "Disponible", "Image", "Nom", "PrixCoutant", "PrixVendu", "Quantite" },
                 values: new object[,]
@@ -228,6 +238,11 @@ namespace Models.Migrations
                     { 20, 1, "Une soupe instantanée épicée avec des nouilles et un bouillon savoureux.", true, "https://wxxkhaynopgdjhcbrsqe.supabase.co/storage/v1/object/public/Images/SoupeShin.png", "Soupe aux nouilles Shin", 2.25m, 3.75m, 7 },
                     { 21, 2, "Des bonbons gélifiés acidulés puis sucrés pour une explosion de saveurs.", true, "https://wxxkhaynopgdjhcbrsqe.supabase.co/storage/v1/object/public/Images/SourPatchKids.png", "Sour Patch Kids", 2.00m, 2.99m, 12 }
                 });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "RoleId", "UserId" },
+                values: new object[] { "1", "11111111-1111-1111-1111-111111111111" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

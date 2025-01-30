@@ -16,15 +16,11 @@ namespace LapinCouvertMVC.Controllers
     [Authorize(Roles = "admin")]
     public class InventaireController : Controller
     {
-        private ApplicationDbContext _dbContext;
         private readonly Supabase.Client _supabaseClient;
-
-        public InventaireController(ApplicationDbContext dbContext)
         private ProduitsService _produitsService;
         private PaginationService _paginationService;
-        public InventaireController(ApplicationDbContext dbContext, ProduitsService produitsService, PaginationService paginationService)
+        public InventaireController(ProduitsService produitsService, PaginationService paginationService)
         {
-            _dbContext = dbContext;
             _supabaseClient = new Supabase.Client("https://wxxkhaynopgdjhcbrsqe.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind4eGtoYXlub3BnZGpoY2Jyc3FlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzgxNjU5MDQsImV4cCI6MjA1Mzc0MTkwNH0.v3PYWCL2Ayv7epyfcytKL4fNZMtD6fLWrN_RgD3Rq1o");
 
             _produitsService = produitsService;
@@ -66,18 +62,18 @@ namespace LapinCouvertMVC.Controllers
         // POST: InventaireController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProduitId,Nom,PrixVendu,Description,Quantite,PrixCoutant,Disponible,Categorie")] Produit produit, IFormFile Image)
+        public async Task<IActionResult> Create([Bind("ProduitId,Nom,PrixVendu,Description,Quantite,PrixCoutant,Disponible,Categorie")] Produit produit, IFormFile image)
         {
             if (ModelState.IsValid)
             {
-                if (Image != null && Image.Length > 0)
+                if (image != null && image.Length > 0)
                 {
-                    var fileBytes = new byte[Image.Length];
-                    using (var stream = Image.OpenReadStream())
+                    var fileBytes = new byte[image.Length];
+                    using (var stream = image.OpenReadStream())
                     {
                         await stream.ReadAsync(fileBytes);
                     }
-                    var filePath = Path.GetFileName(Image.FileName);
+                    var filePath = Path.GetFileName(image.FileName);
 
                     var uploadResult = await _supabaseClient.Storage
                         .From("Images")
@@ -105,9 +101,6 @@ namespace LapinCouvertMVC.Controllers
                         return View(produit);
                     }
                 }
-
-                _dbContext.Add(produit);
-                await _dbContext.SaveChangesAsync();
 
                 _produitsService.CreateProduit(produit);
                 return RedirectToAction(nameof(Index));

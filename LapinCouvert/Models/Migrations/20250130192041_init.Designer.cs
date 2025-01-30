@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Models.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250130190921_init")]
+    [Migration("20250130192041_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -49,6 +49,14 @@ namespace Models.Migrations
                         .HasDatabaseName("RoleNameIndex");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "1",
+                            Name = "admin",
+                            NormalizedName = "ADMIN"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -138,6 +146,24 @@ namespace Models.Migrations
                         .HasDatabaseName("UserNameIndex");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "11111111-1111-1111-1111-111111111111",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "a79343c6-183d-42ea-b17b-9b987ab51235",
+                            Email = "a@a.a",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "A@A.A",
+                            NormalizedUserName = "A@A.A",
+                            PasswordHash = "AQAAAAIAAYagAAAAEFcMXmWKD6aCwoYTCAS51KLQkufJL9ZVMU/fjnsNGQWu9xQufQCPxgWkwInfJLHbbQ==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "436ad574-e468-4ea1-934f-0dea9955bbc3",
+                            TwoFactorEnabled = false,
+                            UserName = "a@a.a"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -202,6 +228,13 @@ namespace Models.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "11111111-1111-1111-1111-111111111111",
+                            RoleId = "1"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>

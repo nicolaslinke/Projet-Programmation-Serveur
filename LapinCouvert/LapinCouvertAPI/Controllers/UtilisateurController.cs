@@ -84,8 +84,10 @@ namespace LapinCouvertAPI.Controllers
                     signingCredentials: new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256Signature)
                 );
 
+                var utilisateur = await _utilisateurService.GetUtilisateurByUserId(user.Id);
+
                 string tokenString = new JwtSecurityTokenHandler().WriteToken(token);
-                string userName = u.Prenom + " " + u.Nom;
+                string userName =  utilisateur.Prenom + " " + utilisateur.Nom;
                 // On ne veut JAMAIS retouner une string directement lorsque l'on utilise Angular.
                 // Angular assume que l'on retourne un objet et donne une erreur lorsque le résultat obtenu est une simple string!
                 return Ok(new ConnexionSuccesDTO() { Jeton = tokenString, UserName = userName});
