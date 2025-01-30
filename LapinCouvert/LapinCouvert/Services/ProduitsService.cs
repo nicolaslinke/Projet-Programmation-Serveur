@@ -1,4 +1,4 @@
-﻿using LapinCouvert.Data;
+using LapinCouvert.Data;
 using Microsoft.EntityFrameworkCore;
 using Models.Models;
 
