@@ -264,133 +264,253 @@ namespace Models.Migrations
                         new
                         {
                             ProduitId = 1,
-                            Categorie = 0,
-                            Description = " Le Caramilk est une barre chocolatée emblématique de la marque Cadbury, qui combine une riche et crémeuse chocolat au lait avec un délicieux cœur de caramel fondant. Sa texture unique est à la fois lisse et fondante, créant une expérience sucrée et gourmande. Le caramel, caché à l'intérieur, apporte une douceur subtile et une note sucrée intense qui se marie parfaitement avec le chocolat au lait.",
+                            Categorie = 2,
+                            Description = "Une barre chocolatée Cadbury avec un cœur de caramel fondant enrobé de chocolat au lait.",
                             Disponible = true,
-                            Image = "../../Images/Caramilk.png",
+                            Image = "https://wxxkhaynopgdjhcbrsqe.supabase.co/storage/v1/object/public/Images/Caramilk.png",
                             Nom = "Caramilk",
-                            PrixCoutant = 3m,
+                            PrixCoutant = 2.00m,
                             PrixVendu = 2.75m,
                             Quantite = 5
                         },
                         new
                         {
                             ProduitId = 2,
-                            Categorie = 0,
-                            Description = "boisson électrolyte rafraîchissante au goût fruité",
+                            Categorie = 2,
+                            Description = "Une barre chocolatée Nestlé avec un intérieur alvéolé unique.",
                             Disponible = true,
-                            Image = "../../Images/Gatorade Bleu Cool.png",
-                            Nom = "Gatorade Bleu",
-                            PrixCoutant = 3m,
-                            PrixVendu = 3m,
-                            Quantite = 4
+                            Image = "https://wxxkhaynopgdjhcbrsqe.supabase.co/storage/v1/object/public/Images/Aero.png",
+                            Nom = "Aero",
+                            PrixCoutant = 1.80m,
+                            PrixVendu = 2.50m,
+                            Quantite = 10
                         },
                         new
                         {
                             ProduitId = 3,
-                            Categorie = 0,
-                            Description = "boisson électrolyte rafraîchissante au goût fruité",
+                            Categorie = 2,
+                            Description = "Un délicieux beignet moelleux recouvert d'un glaçage au chocolat.",
                             Disponible = true,
-                            Image = "../../Images/Guru Original.png",
-                            Nom = "Guru",
-                            PrixCoutant = 3m,
-                            PrixVendu = 4.50m,
-                            Quantite = 6
+                            Image = "https://wxxkhaynopgdjhcbrsqe.supabase.co/storage/v1/object/public/Images/BeigneChocolat.png",
+                            Nom = "Beigne au chocolat",
+                            PrixCoutant = 1.20m,
+                            PrixVendu = 1.99m,
+                            Quantite = 8
                         },
                         new
                         {
                             ProduitId = 4,
-                            Categorie = 2,
-                            Description = "boisson électrolyte rafraîchissante au goût fruité",
+                            Categorie = 1,
+                            Description = "Un burrito garni de viande, fromage et légumes dans une tortilla souple.",
                             Disponible = true,
-                            Image = "../../Images/KitKat.png",
-                            Nom = "KitKat",
-                            PrixCoutant = 3m,
-                            PrixVendu = 2.25m,
-                            Quantite = 25
+                            Image = "https://wxxkhaynopgdjhcbrsqe.supabase.co/storage/v1/object/public/Images/Burrito.png",
+                            Nom = "Burrito",
+                            PrixCoutant = 4.00m,
+                            PrixVendu = 5.50m,
+                            Quantite = 6
                         },
                         new
                         {
                             ProduitId = 5,
                             Categorie = 0,
-                            Description = "boisson électrolyte rafraîchissante au goût fruité",
+                            Description = "Une boisson énergisante aux électrolytes pour une hydratation optimale.",
                             Disponible = true,
-                            Image = "../../Images/Lait protéiné Fairlife Chocolat.png",
-                            Nom = "Lait protéiné Fairlife",
-                            PrixCoutant = 3m,
-                            PrixVendu = 4.50m,
-                            Quantite = 2
+                            Image = "https://wxxkhaynopgdjhcbrsqe.supabase.co/storage/v1/object/public/Images/GatoradeBleu.png",
+                            Nom = "Gatorade Bleu Cool",
+                            PrixCoutant = 2.00m,
+                            PrixVendu = 3.25m,
+                            Quantite = 12
                         },
                         new
                         {
                             ProduitId = 6,
-                            Categorie = 1,
-                            Description = "boisson électrolyte rafraîchissante au goût fruité",
+                            Categorie = 0,
+                            Description = "Une boisson énergisante naturelle avec caféine biologique.",
                             Disponible = true,
-                            Image = "../../Images/McCain Pizza Pochette au pepperoni.png",
-                            Nom = "Pizza Pochette au pepperoni",
-                            PrixCoutant = 3m,
-                            PrixVendu = 2.50m,
-                            Quantite = 46
+                            Image = "https://wxxkhaynopgdjhcbrsqe.supabase.co/storage/v1/object/public/Images/GuruOriginal.png",
+                            Nom = "Guru Original",
+                            PrixCoutant = 2.50m,
+                            PrixVendu = 3.99m,
+                            Quantite = 7
                         },
                         new
                         {
                             ProduitId = 7,
-                            Categorie = 0,
-                            Description = "boisson électrolyte rafraîchissante au goût fruité",
+                            Categorie = 2,
+                            Description = "Une barre chocolatée avec des gaufrettes croustillantes enrobées de chocolat.",
                             Disponible = true,
-                            Image = "../../Images/Monster Original.png",
-                            Nom = "Monster Original",
-                            PrixCoutant = 3m,
-                            PrixVendu = 3.50m,
-                            Quantite = 4
+                            Image = "https://wxxkhaynopgdjhcbrsqe.supabase.co/storage/v1/object/public/Images/KitKat.png",
+                            Nom = "KitKat",
+                            PrixCoutant = 1.80m,
+                            PrixVendu = 2.75m,
+                            Quantite = 9
                         },
                         new
                         {
                             ProduitId = 8,
                             Categorie = 0,
-                            Description = "boisson électrolyte rafraîchissante au goût fruité",
+                            Description = "Lait ultra-filtré riche en protéines avec une saveur chocolatée onctueuse.",
                             Disponible = true,
-                            Image = "../../Images/Peace Tea Original.png",
-                            Nom = "Peace Tea Original",
-                            PrixCoutant = 3m,
-                            PrixVendu = 1.50m,
-                            Quantite = 16
+                            Image = "https://wxxkhaynopgdjhcbrsqe.supabase.co/storage/v1/object/public/Images/FairlifeChocolat.png",
+                            Nom = "Lait Protéiné Fairlife Chocolat",
+                            PrixCoutant = 3.00m,
+                            PrixVendu = 4.50m,
+                            Quantite = 10
                         },
                         new
                         {
                             ProduitId = 9,
                             Categorie = 1,
-                            Description = "boisson électrolyte rafraîchissante au goût fruité",
+                            Description = "Une pochette croustillante farcie de sauce tomate, fromage et pepperoni.",
                             Disponible = true,
-                            Image = "../../Images/Pogo.png",
-                            Nom = "Pogo",
-                            PrixCoutant = 3m,
-                            PrixVendu = 3.50m,
-                            Quantite = 65
+                            Image = "https://wxxkhaynopgdjhcbrsqe.supabase.co/storage/v1/object/public/Images/PizzaPochette.png",
+                            Nom = "McCain Pizza Pochette au Pepperoni",
+                            PrixCoutant = 3.25m,
+                            PrixVendu = 4.99m,
+                            Quantite = 6
                         },
                         new
                         {
                             ProduitId = 10,
                             Categorie = 0,
-                            Description = "boisson électrolyte rafraîchissante au goût fruité",
+                            Description = "Une boisson énergisante puissante avec une haute teneur en caféine.",
                             Disponible = true,
-                            Image = "../../Images/Red Bull Original.png",
-                            Nom = "Red Bull Original",
-                            PrixCoutant = 3m,
-                            PrixVendu = 3m,
-                            Quantite = 23
+                            Image = "https://wxxkhaynopgdjhcbrsqe.supabase.co/storage/v1/object/public/Images/MonsterOriginal.png",
+                            Nom = "Monster Original",
+                            PrixCoutant = 2.50m,
+                            PrixVendu = 3.99m,
+                            Quantite = 8
                         },
                         new
                         {
                             ProduitId = 11,
-                            Categorie = 1,
-                            Description = "boisson électrolyte rafraîchissante au goût fruité",
+                            Categorie = 0,
+                            Description = "Une version sans sucre de la célèbre boisson énergisante Monster.",
                             Disponible = true,
-                            Image = "../../Images/Soupe aux nouilles Shin.png",
-                            Nom = "Soupr aux nouilles Shin",
-                            PrixCoutant = 3m,
-                            PrixVendu = 4.50m,
+                            Image = "https://wxxkhaynopgdjhcbrsqe.supabase.co/storage/v1/object/public/Images/MonsterUltra.png",
+                            Nom = "Monster Ultra",
+                            PrixCoutant = 2.50m,
+                            PrixVendu = 3.99m,
+                            Quantite = 10
+                        },
+                        new
+                        {
+                            ProduitId = 12,
+                            Categorie = 2,
+                            Description = "Un biscuit croustillant au chocolat fourré d’une crème sucrée.",
+                            Disponible = true,
+                            Image = "https://wxxkhaynopgdjhcbrsqe.supabase.co/storage/v1/object/public/Images/Oreo.png",
+                            Nom = "Oreo",
+                            PrixCoutant = 2.00m,
+                            PrixVendu = 3.25m,
+                            Quantite = 10
+                        },
+                        new
+                        {
+                            ProduitId = 13,
+                            Categorie = 0,
+                            Description = "Un thé glacé rafraîchissant au goût sucré et fruité.",
+                            Disponible = true,
+                            Image = "https://wxxkhaynopgdjhcbrsqe.supabase.co/storage/v1/object/public/Images/PeaceTeaOriginal.png",
+                            Nom = "Peace Tea Original",
+                            PrixCoutant = 2.00m,
+                            PrixVendu = 2.99m,
+                            Quantite = 8
+                        },
+                        new
+                        {
+                            ProduitId = 14,
+                            Categorie = 1,
+                            Description = "Une pizza garnie de sauce tomate, fromage et divers ingrédients.",
+                            Disponible = true,
+                            Image = "https://wxxkhaynopgdjhcbrsqe.supabase.co/storage/v1/object/public/Images/PizzaPoivrons.png",
+                            Nom = "Pizza aux poivrons",
+                            PrixCoutant = 5.00m,
+                            PrixVendu = 7.99m,
+                            Quantite = 5
+                        },
+                        new
+                        {
+                            ProduitId = 15,
+                            Categorie = 1,
+                            Description = "Un hot-dog sur bâton enrobé d'une pâte frite croustillante.",
+                            Disponible = true,
+                            Image = "https://wxxkhaynopgdjhcbrsqe.supabase.co/storage/v1/object/public/Images/Pogo.png",
+                            Nom = "Pogo",
+                            PrixCoutant = 2.50m,
+                            PrixVendu = 3.50m,
+                            Quantite = 7
+                        },
+                        new
+                        {
+                            ProduitId = 16,
+                            Categorie = 1,
+                            Description = "Des frites croustillantes recouvertes de fromage en grains et de sauce brune.",
+                            Disponible = true,
+                            Image = "https://wxxkhaynopgdjhcbrsqe.supabase.co/storage/v1/object/public/Images/Poutine.png",
+                            Nom = "Poutine",
+                            PrixCoutant = 4.50m,
+                            PrixVendu = 6.99m,
+                            Quantite = 6
+                        },
+                        new
+                        {
+                            ProduitId = 17,
+                            Categorie = 0,
+                            Description = "Une boisson hydratante à saveur de fraise et melon d’eau.",
+                            Disponible = true,
+                            Image = "https://wxxkhaynopgdjhcbrsqe.supabase.co/storage/v1/object/public/Images/PrimeFraiseMelon.png",
+                            Nom = "Prime Fraise et Melon d'eau",
+                            PrixCoutant = 2.50m,
+                            PrixVendu = 3.99m,
+                            Quantite = 8
+                        },
+                        new
+                        {
+                            ProduitId = 18,
+                            Categorie = 0,
+                            Description = "Une boisson énergisante classique pour un regain de vitalité.",
+                            Disponible = true,
+                            Image = "https://wxxkhaynopgdjhcbrsqe.supabase.co/storage/v1/object/public/Images/RedbullOriginal.png",
+                            Nom = "Redbull Original",
+                            PrixCoutant = 2.50m,
+                            PrixVendu = 3.99m,
+                            Quantite = 10
+                        },
+                        new
+                        {
+                            ProduitId = 19,
+                            Categorie = 1,
+                            Description = "Un sandwich frais garni de tomates juteuses et d’assaisonnements.",
+                            Disponible = true,
+                            Image = "https://wxxkhaynopgdjhcbrsqe.supabase.co/storage/v1/object/public/Images/SandwichTomates.png",
+                            Nom = "Sandwich aux tomates",
+                            PrixCoutant = 2.75m,
+                            PrixVendu = 4.25m,
+                            Quantite = 5
+                        },
+                        new
+                        {
+                            ProduitId = 20,
+                            Categorie = 1,
+                            Description = "Une soupe instantanée épicée avec des nouilles et un bouillon savoureux.",
+                            Disponible = true,
+                            Image = "https://wxxkhaynopgdjhcbrsqe.supabase.co/storage/v1/object/public/Images/SoupeShin.png",
+                            Nom = "Soupe aux nouilles Shin",
+                            PrixCoutant = 2.25m,
+                            PrixVendu = 3.75m,
+                            Quantite = 7
+                        },
+                        new
+                        {
+                            ProduitId = 21,
+                            Categorie = 2,
+                            Description = "Des bonbons gélifiés acidulés puis sucrés pour une explosion de saveurs.",
+                            Disponible = true,
+                            Image = "https://wxxkhaynopgdjhcbrsqe.supabase.co/storage/v1/object/public/Images/SourPatchKids.png",
+                            Nom = "Sour Patch Kids",
+                            PrixCoutant = 2.00m,
+                            PrixVendu = 2.99m,
                             Quantite = 12
                         });
                 });

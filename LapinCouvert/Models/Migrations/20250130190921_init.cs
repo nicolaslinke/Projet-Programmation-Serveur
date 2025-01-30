@@ -2,15 +2,16 @@
 using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
+#nullable disable
 
-#pragma warning disable CA1814
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
 
 namespace Models.Migrations
 {
-    
+    /// <inheritdoc />
     public partial class init : Migration
     {
-        
+        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
@@ -205,17 +206,27 @@ namespace Models.Migrations
                 columns: new[] { "ProduitId", "Categorie", "Description", "Disponible", "Image", "Nom", "PrixCoutant", "PrixVendu", "Quantite" },
                 values: new object[,]
                 {
-                    { 1, 0, " Le Caramilk est une barre chocolatée emblématique de la marque Cadbury, qui combine une riche et crémeuse chocolat au lait avec un délicieux cœur de caramel fondant. Sa texture unique est à la fois lisse et fondante, créant une expérience sucrée et gourmande. Le caramel, caché à l'intérieur, apporte une douceur subtile et une note sucrée intense qui se marie parfaitement avec le chocolat au lait.", true, "../../Images/Caramilk.png", "Caramilk", 3m, 2.75m, 5 },
-                    { 2, 0, "boisson électrolyte rafraîchissante au goût fruité", true, "../../Images/Gatorade Bleu Cool.png", "Gatorade Bleu", 3m, 3m, 4 },
-                    { 3, 0, "boisson électrolyte rafraîchissante au goût fruité", true, "../../Images/Guru Original.png", "Guru", 3m, 4.50m, 6 },
-                    { 4, 2, "boisson électrolyte rafraîchissante au goût fruité", true, "../../Images/KitKat.png", "KitKat", 3m, 2.25m, 25 },
-                    { 5, 0, "boisson électrolyte rafraîchissante au goût fruité", true, "../../Images/Lait protéiné Fairlife Chocolat.png", "Lait protéiné Fairlife", 3m, 4.50m, 2 },
-                    { 6, 1, "boisson électrolyte rafraîchissante au goût fruité", true, "../../Images/McCain Pizza Pochette au pepperoni.png", "Pizza Pochette au pepperoni", 3m, 2.50m, 46 },
-                    { 7, 0, "boisson électrolyte rafraîchissante au goût fruité", true, "../../Images/Monster Original.png", "Monster Original", 3m, 3.50m, 4 },
-                    { 8, 0, "boisson électrolyte rafraîchissante au goût fruité", true, "../../Images/Peace Tea Original.png", "Peace Tea Original", 3m, 1.50m, 16 },
-                    { 9, 1, "boisson électrolyte rafraîchissante au goût fruité", true, "../../Images/Pogo.png", "Pogo", 3m, 3.50m, 65 },
-                    { 10, 0, "boisson électrolyte rafraîchissante au goût fruité", true, "../../Images/Red Bull Original.png", "Red Bull Original", 3m, 3m, 23 },
-                    { 11, 1, "boisson électrolyte rafraîchissante au goût fruité", true, "../../Images/Soupe aux nouilles Shin.png", "Soupr aux nouilles Shin", 3m, 4.50m, 12 }
+                    { 1, 2, "Une barre chocolatée Cadbury avec un cœur de caramel fondant enrobé de chocolat au lait.", true, "https://wxxkhaynopgdjhcbrsqe.supabase.co/storage/v1/object/public/Images/Caramilk.png", "Caramilk", 2.00m, 2.75m, 5 },
+                    { 2, 2, "Une barre chocolatée Nestlé avec un intérieur alvéolé unique.", true, "https://wxxkhaynopgdjhcbrsqe.supabase.co/storage/v1/object/public/Images/Aero.png", "Aero", 1.80m, 2.50m, 10 },
+                    { 3, 2, "Un délicieux beignet moelleux recouvert d'un glaçage au chocolat.", true, "https://wxxkhaynopgdjhcbrsqe.supabase.co/storage/v1/object/public/Images/BeigneChocolat.png", "Beigne au chocolat", 1.20m, 1.99m, 8 },
+                    { 4, 1, "Un burrito garni de viande, fromage et légumes dans une tortilla souple.", true, "https://wxxkhaynopgdjhcbrsqe.supabase.co/storage/v1/object/public/Images/Burrito.png", "Burrito", 4.00m, 5.50m, 6 },
+                    { 5, 0, "Une boisson énergisante aux électrolytes pour une hydratation optimale.", true, "https://wxxkhaynopgdjhcbrsqe.supabase.co/storage/v1/object/public/Images/GatoradeBleu.png", "Gatorade Bleu Cool", 2.00m, 3.25m, 12 },
+                    { 6, 0, "Une boisson énergisante naturelle avec caféine biologique.", true, "https://wxxkhaynopgdjhcbrsqe.supabase.co/storage/v1/object/public/Images/GuruOriginal.png", "Guru Original", 2.50m, 3.99m, 7 },
+                    { 7, 2, "Une barre chocolatée avec des gaufrettes croustillantes enrobées de chocolat.", true, "https://wxxkhaynopgdjhcbrsqe.supabase.co/storage/v1/object/public/Images/KitKat.png", "KitKat", 1.80m, 2.75m, 9 },
+                    { 8, 0, "Lait ultra-filtré riche en protéines avec une saveur chocolatée onctueuse.", true, "https://wxxkhaynopgdjhcbrsqe.supabase.co/storage/v1/object/public/Images/FairlifeChocolat.png", "Lait Protéiné Fairlife Chocolat", 3.00m, 4.50m, 10 },
+                    { 9, 1, "Une pochette croustillante farcie de sauce tomate, fromage et pepperoni.", true, "https://wxxkhaynopgdjhcbrsqe.supabase.co/storage/v1/object/public/Images/PizzaPochette.png", "McCain Pizza Pochette au Pepperoni", 3.25m, 4.99m, 6 },
+                    { 10, 0, "Une boisson énergisante puissante avec une haute teneur en caféine.", true, "https://wxxkhaynopgdjhcbrsqe.supabase.co/storage/v1/object/public/Images/MonsterOriginal.png", "Monster Original", 2.50m, 3.99m, 8 },
+                    { 11, 0, "Une version sans sucre de la célèbre boisson énergisante Monster.", true, "https://wxxkhaynopgdjhcbrsqe.supabase.co/storage/v1/object/public/Images/MonsterUltra.png", "Monster Ultra", 2.50m, 3.99m, 10 },
+                    { 12, 2, "Un biscuit croustillant au chocolat fourré d’une crème sucrée.", true, "https://wxxkhaynopgdjhcbrsqe.supabase.co/storage/v1/object/public/Images/Oreo.png", "Oreo", 2.00m, 3.25m, 10 },
+                    { 13, 0, "Un thé glacé rafraîchissant au goût sucré et fruité.", true, "https://wxxkhaynopgdjhcbrsqe.supabase.co/storage/v1/object/public/Images/PeaceTeaOriginal.png", "Peace Tea Original", 2.00m, 2.99m, 8 },
+                    { 14, 1, "Une pizza garnie de sauce tomate, fromage et divers ingrédients.", true, "https://wxxkhaynopgdjhcbrsqe.supabase.co/storage/v1/object/public/Images/PizzaPoivrons.png", "Pizza aux poivrons", 5.00m, 7.99m, 5 },
+                    { 15, 1, "Un hot-dog sur bâton enrobé d'une pâte frite croustillante.", true, "https://wxxkhaynopgdjhcbrsqe.supabase.co/storage/v1/object/public/Images/Pogo.png", "Pogo", 2.50m, 3.50m, 7 },
+                    { 16, 1, "Des frites croustillantes recouvertes de fromage en grains et de sauce brune.", true, "https://wxxkhaynopgdjhcbrsqe.supabase.co/storage/v1/object/public/Images/Poutine.png", "Poutine", 4.50m, 6.99m, 6 },
+                    { 17, 0, "Une boisson hydratante à saveur de fraise et melon d’eau.", true, "https://wxxkhaynopgdjhcbrsqe.supabase.co/storage/v1/object/public/Images/PrimeFraiseMelon.png", "Prime Fraise et Melon d'eau", 2.50m, 3.99m, 8 },
+                    { 18, 0, "Une boisson énergisante classique pour un regain de vitalité.", true, "https://wxxkhaynopgdjhcbrsqe.supabase.co/storage/v1/object/public/Images/RedbullOriginal.png", "Redbull Original", 2.50m, 3.99m, 10 },
+                    { 19, 1, "Un sandwich frais garni de tomates juteuses et d’assaisonnements.", true, "https://wxxkhaynopgdjhcbrsqe.supabase.co/storage/v1/object/public/Images/SandwichTomates.png", "Sandwich aux tomates", 2.75m, 4.25m, 5 },
+                    { 20, 1, "Une soupe instantanée épicée avec des nouilles et un bouillon savoureux.", true, "https://wxxkhaynopgdjhcbrsqe.supabase.co/storage/v1/object/public/Images/SoupeShin.png", "Soupe aux nouilles Shin", 2.25m, 3.75m, 7 },
+                    { 21, 2, "Des bonbons gélifiés acidulés puis sucrés pour une explosion de saveurs.", true, "https://wxxkhaynopgdjhcbrsqe.supabase.co/storage/v1/object/public/Images/SourPatchKids.png", "Sour Patch Kids", 2.00m, 2.99m, 12 }
                 });
 
             migrationBuilder.CreateIndex(

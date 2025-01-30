@@ -74,6 +74,8 @@ builder.Services.AddSwaggerGen(opt =>
 });
 
 builder.Services.AddScoped<UtilisateurService>();
+builder.Services.AddScoped<ProduitService>();
+
 
 builder.Services.AddCors(options =>
 {
