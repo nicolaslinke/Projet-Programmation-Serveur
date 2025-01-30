@@ -1,5 +1,6 @@
 ﻿using LapinCouvert.Data;
 using LapinCouvertMVC.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
@@ -48,6 +49,7 @@ namespace LapinCouvertMVC.Controllers
         }
 
         // GET: InventaireController/Create
+        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
             ViewBag.Categories = new SelectList(Enum.GetValues(typeof(CategorieEnum)));
@@ -56,6 +58,7 @@ namespace LapinCouvertMVC.Controllers
 
         // POST: InventaireController/Create
         [HttpPost]
+        [Authorize(Roles = "admin")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ProduitId,Nom,PrixVendu,Description,Image,Quantite,PrixCoutant,Disponible,Categorie")] Produit produit)
         {
