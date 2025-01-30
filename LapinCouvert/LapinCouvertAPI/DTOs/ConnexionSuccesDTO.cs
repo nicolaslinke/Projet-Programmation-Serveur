@@ -4,7 +4,8 @@ namespace API.DTOs
 {
     public class ConnexionSuccesDTO
     {
-        [Required]
+        public string UserName { get; set; } = "";
+
         public string Jeton { get; set; } = "";
     }
 }
