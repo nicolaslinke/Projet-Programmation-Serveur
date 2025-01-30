@@ -7,10 +7,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LapinCouvertMVC.Services;
 
 namespace Tests
 {
-    [TestClass()]
+    [TestClass]
     public class GestionInventaire
     {
         DbContextOptions<ApplicationDbContext> options;
@@ -80,12 +81,23 @@ namespace Tests
             db.SaveChanges();
         }
 
-        [TestMethod()]
-        public void GetProduitS()
+        [TestMethod]
+        public async Task ObtenirProduitsTest()
         {
+            // Arrange
             using ApplicationDbContext db = new ApplicationDbContext(options);
-            
-            
+            ProduitsService _produitService = new ProduitsService(db);
+
+            List<Produit> produitsTries = db.Produits.OrderBy(p => p.Nom).ToList();
+
+            // Act
+            var produits = await _produitService.ObtenirInventaireOrdreNomAsync();
+
+            // Assert
+            Assert.AreEqual(3, produits.Count);
+            Assert.AreEqual(produitsTries[0], produits[0]);
+            Assert.AreEqual(produitsTries[1], produits[1]);
+            Assert.AreEqual(produitsTries[2], produits[2]);
         }
     }
 }

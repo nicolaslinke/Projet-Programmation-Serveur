@@ -19,6 +19,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LapinCouvertAPI\LapinCouvertAPI.csproj" />
+    <ProjectReference Include="..\LapinCouvert\LapinCouvertMVC.csproj" />
+    <ProjectReference Include="..\Models\Models.csproj" />
   </ItemGroup>
 
   <ItemGroup>

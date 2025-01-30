@@ -5,7 +5,7 @@ namespace LapinCouvertMVC.Services
 {
     public class PaginationService
     {
-        public ProduitsViewModel GetProduitsPage(List<Produit> produits, int pageSelectionneeIndex, int produitParPage)
+        public ProduitsViewModel PaginationProduits(List<Produit> produits, int pageSelectionneeIndex, int produitParPage)
         {
             var produitsPage = new List<Produit>();
             produitsPage.AddRange(produits.Skip(pageSelectionneeIndex * produitParPage).Take(produitParPage).ToList());

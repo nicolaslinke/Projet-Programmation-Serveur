@@ -29,8 +29,8 @@ namespace LapinCouvertMVC.Controllers
         // GET: InventaireController
         public async Task<IActionResult> Index()
         {
-            var inventaire = await _produitsService.GetInventaire();
-            var produitsViewModel = _paginationService.GetProduitsPage(inventaire, 0, PRODUIT_PAR_PAGE);
+            var inventaire = await _produitsService.ObtenirInventaireOrdreNomAsync();
+            var produitsViewModel = _paginationService.PaginationProduits(inventaire, 0, PRODUIT_PAR_PAGE);
 
             return View(produitsViewModel);
         }
@@ -38,8 +38,8 @@ namespace LapinCouvertMVC.Controllers
         // GET: Change de page
         public async Task<IActionResult> ChangerPage(ProduitsViewModel produitsViewModel)
         {
-            var inventaire = await _produitsService.GetInventaire();
-            produitsViewModel = _paginationService.GetProduitsPage(inventaire, produitsViewModel.PageSelectionneeIndex, PRODUIT_PAR_PAGE);
+            var inventaire = await _produitsService.ObtenirInventaireOrdreNomAsync();
+            produitsViewModel = _paginationService.PaginationProduits(inventaire, produitsViewModel.PageSelectionneeIndex, PRODUIT_PAR_PAGE);
 
             return View("Index", produitsViewModel);
         }
@@ -64,8 +64,7 @@ namespace LapinCouvertMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                _dbContext.Add(produit);
-                await _dbContext.SaveChangesAsync();
+                _produitsService.CreateProduit(produit);
                 return RedirectToAction(nameof(Index));
 
             }
