@@ -63,11 +63,14 @@ namespace LapinCouvertMVC.Controllers
         {
             if (ModelState.IsValid)
             {
+                produit.Nom = produit.Nom.Trim();
+                produit.Description = produit.Description.Trim();
                 _dbContext.Add(produit);
                 await _dbContext.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
 
             }
+
             return View(produit);
         }
         // GET: InventaireController/Edit/5
