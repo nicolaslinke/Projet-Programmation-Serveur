@@ -1,4 +1,4 @@
-﻿using LapinCouvert.Data;
+using LapinCouvert.Data;
 using LapinCouvertMVC.Services;
 using LapinCouvertMVC.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -68,6 +68,7 @@ namespace LapinCouvertMVC.Controllers
                 return RedirectToAction(nameof(Index));
 
             }
+
             return View(produit);
         }
         // GET: InventaireController/Edit/5
