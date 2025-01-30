@@ -25,7 +25,7 @@ namespace LapinCouvertMVC.Controllers
             _paginationService = paginationService;
         }
 
-        private const int PRODUIT_PAR_PAGE = 2;
+        private const int PRODUIT_PAR_PAGE = 7;
         // GET: InventaireController
         public async Task<IActionResult> Index()
         {

@@ -14,11 +14,14 @@ namespace LapinCouvertMVC.Services
 
         public async Task<List<Produit>> ObtenirInventaireOrdreNomAsync()
         {
+            
             return await _dbContext.Produits.OrderBy(produit => produit.Nom).ToListAsync();
         }
 
-        public async void CreateProduit(Produit produit)
+        public async Task CreateProduit(Produit produit)
         {
+            produit.Nom = produit.Nom.Trim();
+            produit.Description = produit.Description.Trim();
             _dbContext.Add(produit);
             await _dbContext.SaveChangesAsync();
         }
