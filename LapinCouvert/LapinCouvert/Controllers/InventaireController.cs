@@ -11,6 +11,7 @@ using System.Drawing.Printing;
 
 namespace LapinCouvertMVC.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class InventaireController : Controller
     {
         private ApplicationDbContext _dbContext;
@@ -49,7 +50,6 @@ namespace LapinCouvertMVC.Controllers
         }
 
         // GET: InventaireController/Create
-        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
             ViewBag.Categories = new SelectList(Enum.GetValues(typeof(CategorieEnum)));
@@ -58,7 +58,6 @@ namespace LapinCouvertMVC.Controllers
 
         // POST: InventaireController/Create
         [HttpPost]
-        [Authorize(Roles = "admin")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ProduitId,Nom,PrixVendu,Description,Image,Quantite,PrixCoutant,Disponible,Categorie")] Produit produit)
         {

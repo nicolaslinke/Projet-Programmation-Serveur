@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Models.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250130140048_emailConfirm")]
-    partial class emailConfirm
+    [Migration("20250130145317_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -154,15 +154,15 @@ namespace Models.Migrations
                         {
                             Id = "11111111-1111-1111-1111-111111111111",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "2ac5e64f-8c09-40dc-aeb7-31722c90c607",
+                            ConcurrencyStamp = "8884d215-c4cd-4aea-bd01-7e78a19524ff",
                             Email = "a@a.a",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "A@A.A",
                             NormalizedUserName = "A@A.A",
-                            PasswordHash = "AQAAAAIAAYagAAAAEKL6nJb12o4n5WE7xO0Yb+q2/In+Tu6UK1IXnG5+lTfKXx5dV5gZTrjHEk9pYFS1Jw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEO2FwFktZzvHKuxM+l5Qwg87qJCx/a4MNEWgfJVyBsbdTHTd/H/AEGqbHjaceK7X1w==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "8b450ed1-63f7-4edc-957a-79bb2b1e0ce9",
+                            SecurityStamp = "29f0db78-db56-4f5a-911b-008d0e75b91c",
                             TwoFactorEnabled = false,
                             UserName = "a@a.a"
                         });

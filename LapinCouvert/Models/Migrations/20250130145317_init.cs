@@ -201,6 +201,16 @@ namespace Models.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[] { "1", null, "admin", "ADMIN" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "11111111-1111-1111-1111-111111111111", 0, "8884d215-c4cd-4aea-bd01-7e78a19524ff", "a@a.a", true, false, null, "A@A.A", "A@A.A", "AQAAAAIAAYagAAAAEO2FwFktZzvHKuxM+l5Qwg87qJCx/a4MNEWgfJVyBsbdTHTd/H/AEGqbHjaceK7X1w==", null, false, "29f0db78-db56-4f5a-911b-008d0e75b91c", false, "a@a.a" });
+
+            migrationBuilder.InsertData(
                 table: "Produits",
                 columns: new[] { "ProduitId", "Categorie", "Description", "Disponible", "Image", "Nom", "PrixCoutant", "PrixVendu", "Quantite" },
                 values: new object[,]
@@ -217,6 +227,11 @@ namespace Models.Migrations
                     { 10, 0, "boisson électrolyte rafraîchissante au goût fruité", true, "../../Images/Red Bull Original.png", "Red Bull Original", 3m, 3m, 23 },
                     { 11, 1, "boisson électrolyte rafraîchissante au goût fruité", true, "../../Images/Soupe aux nouilles Shin.png", "Soupr aux nouilles Shin", 3m, 4.50m, 12 }
                 });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "RoleId", "UserId" },
+                values: new object[] { "1", "11111111-1111-1111-1111-111111111111" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
