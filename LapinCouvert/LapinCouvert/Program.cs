@@ -1,4 +1,5 @@
 using LapinCouvert.Data;
+using LapinCouvertMVC.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,6 +15,9 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<ProduitsService>();
+builder.Services.AddScoped<PaginationService>();
 
 var app = builder.Build();
 

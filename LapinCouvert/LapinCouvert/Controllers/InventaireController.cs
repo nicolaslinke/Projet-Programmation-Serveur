@@ -1,4 +1,5 @@
 ﻿using LapinCouvert.Data;
+using LapinCouvertMVC.Services;
 using LapinCouvertMVC.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -15,32 +16,32 @@ namespace LapinCouvertMVC.Controllers
     public class InventaireController : Controller
     {
         private ApplicationDbContext _dbContext;
-        public InventaireController(ApplicationDbContext dbContext)
+        private ProduitsService _produitsService;
+        private PaginationService _paginationService;
+        public InventaireController(ApplicationDbContext dbContext, ProduitsService produitsService, PaginationService paginationService)
         {
             _dbContext = dbContext;
+            _produitsService = produitsService;
+            _paginationService = paginationService;
         }
+
+        private const int PRODUIT_PAR_PAGE = 2;
         // GET: InventaireController
         public async Task<IActionResult> Index()
         {
-            var inventaire = await _dbContext.Produits.OrderBy(produit => produit.Nom).ToListAsync();
-            var inventairePage = new List<Produit>();
-            inventairePage.AddRange(inventaire.Skip(0 * 10).Take(10).ToList());
-            var inventaireViewModel = new InventaireViewModel() { Inventaire = inventairePage, SelectedPageIndex = 0, NombrePageTotale = (int)Math.Ceiling(inventaire.Count / (double)10) };
+            var inventaire = await _produitsService.GetInventaire();
+            var produitsViewModel = _paginationService.GetProduitsPage(inventaire, 0, PRODUIT_PAR_PAGE);
 
-            return View(inventaireViewModel);
+            return View(produitsViewModel);
         }
 
         // GET: Change de page
-        public async Task<IActionResult> ChangerPage(InventaireViewModel inventaireViewModel)
+        public async Task<IActionResult> ChangerPage(ProduitsViewModel produitsViewModel)
         {
-            var inventaire = await _dbContext.Produits.OrderBy(produit => produit.Nom).ToListAsync();
-            var inventairePage = new List<Produit>();
-            inventairePage.AddRange(inventaire.Skip(inventaireViewModel.SelectedPageIndex * 10).Take(10).ToList());
+            var inventaire = await _produitsService.GetInventaire();
+            produitsViewModel = _paginationService.GetProduitsPage(inventaire, produitsViewModel.PageSelectionneeIndex, PRODUIT_PAR_PAGE);
 
-            inventaireViewModel.Inventaire = inventairePage;
-            inventaireViewModel.NombrePageTotale = (int)Math.Ceiling(inventaire.Count / (double)10);
-
-            return View("Index", inventaireViewModel);
+            return View("Index", produitsViewModel);
         }
 
         // GET: InventaireController/Details/5
