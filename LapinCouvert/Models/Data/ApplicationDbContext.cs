@@ -18,29 +18,15 @@ namespace LapinCouvert.Data
         {
             base.OnModelCreating(builder);
 
-            builder.Entity<IdentityRole>().HasData(
-                new IdentityRole { Id = "1", Name = "admin", NormalizedName = "ADMIN" }
-            );
+            builder.Entity<IdentityRole>().HasData(Seed.SeedRoles());
 
-            PasswordHasher<IdentityUser> passwordHasher = new PasswordHasher<IdentityUser>();
-            IdentityUser u1 = new IdentityUser
-            {
-                Id = "11111111-1111-1111-1111-111111111111",
-                UserName = "a@a.a",
-                NormalizedUserName = "A@A.A",
-                Email = "a@a.a",
-                NormalizedEmail = "A@A.A",
-                EmailConfirmed = true
-            };
-            u1.PasswordHash = passwordHasher.HashPassword(u1, "Password!2");
+            builder.Entity<Utilisateur>().HasData(Seed.SeedUtilisateurs());
 
-            builder.Entity<IdentityUser>().HasData(u1);
+            builder.Entity<IdentityUser>().HasData(Seed.SeedIdentityUsers());
 
-            builder.Entity<IdentityUserRole<string>>().HasData(
-                new IdentityUserRole<string> { UserId = u1.Id, RoleId = "1" }
-            );
+            builder.Entity<IdentityUserRole<string>>().HasData(Seed.SeedIdentityUserRoles());
 
-            builder.Entity<Produit>().HasData(Seed.SeedProduit());
+            builder.Entity<Produit>().HasData(Seed.SeedProduits());
         }
         public DbSet<Produit> Produits { get; set; } = default;
 

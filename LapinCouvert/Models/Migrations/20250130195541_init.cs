@@ -209,7 +209,7 @@ namespace Models.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "11111111-1111-1111-1111-111111111111", 0, "a79343c6-183d-42ea-b17b-9b987ab51235", "a@a.a", true, false, null, "A@A.A", "A@A.A", "AQAAAAIAAYagAAAAEFcMXmWKD6aCwoYTCAS51KLQkufJL9ZVMU/fjnsNGQWu9xQufQCPxgWkwInfJLHbbQ==", null, false, "436ad574-e468-4ea1-934f-0dea9955bbc3", false, "a@a.a" });
+                values: new object[] { "11111111-1111-1111-1111-111111111111", 0, "5219d7c4-b8ca-4424-8645-4c28035814af", "a@a.a", true, false, null, "A@A.A", "A@A.A", "AQAAAAIAAYagAAAAEHE9LzJu+ou9ulx9KasO/J+PtwAYK3uRJOM6ar/TdgHklE3x3eRu/3PWC+W8yUTehA==", null, false, "dcecb760-4d64-4abb-aa4d-4903d4a401ce", false, "a@a.a" });
 
             migrationBuilder.InsertData(
                 table: "Produits",

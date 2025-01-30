@@ -3,6 +3,7 @@ using System;
 using LapinCouvert.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Models.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250130195541_init")]
+    partial class init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -149,15 +152,15 @@ namespace Models.Migrations
                         {
                             Id = "11111111-1111-1111-1111-111111111111",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b07de285-edfd-4a2e-801f-86b7578855b6",
+                            ConcurrencyStamp = "5219d7c4-b8ca-4424-8645-4c28035814af",
                             Email = "a@a.a",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "A@A.A",
                             NormalizedUserName = "A@A.A",
-                            PasswordHash = "AQAAAAIAAYagAAAAEJjCWcP0hJAEY8hvv/uRqa+2v0jz76jzNy9cgd18qUNPA1x6Yvlvl6Z5VAHYb20VfQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEHE9LzJu+ou9ulx9KasO/J+PtwAYK3uRJOM6ar/TdgHklE3x3eRu/3PWC+W8yUTehA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "90973882-fb8b-44fa-9f24-addfce4c832f",
+                            SecurityStamp = "dcecb760-4d64-4abb-aa4d-4903d4a401ce",
                             TwoFactorEnabled = false,
                             UserName = "a@a.a"
                         });
@@ -577,16 +580,6 @@ namespace Models.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Utilisateurs");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Matricule = "1111111",
-                            Nom = "a",
-                            Prenom = "a",
-                            UserId = "11111111-1111-1111-1111-111111111111"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

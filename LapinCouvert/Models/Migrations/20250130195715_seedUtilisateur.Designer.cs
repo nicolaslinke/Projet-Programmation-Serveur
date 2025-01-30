@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Models.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250130192041_init")]
-    partial class init
+    [Migration("20250130195715_seedUtilisateur")]
+    partial class seedUtilisateur
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -152,15 +152,15 @@ namespace Models.Migrations
                         {
                             Id = "11111111-1111-1111-1111-111111111111",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a79343c6-183d-42ea-b17b-9b987ab51235",
+                            ConcurrencyStamp = "b07de285-edfd-4a2e-801f-86b7578855b6",
                             Email = "a@a.a",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "A@A.A",
                             NormalizedUserName = "A@A.A",
-                            PasswordHash = "AQAAAAIAAYagAAAAEFcMXmWKD6aCwoYTCAS51KLQkufJL9ZVMU/fjnsNGQWu9xQufQCPxgWkwInfJLHbbQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEJjCWcP0hJAEY8hvv/uRqa+2v0jz76jzNy9cgd18qUNPA1x6Yvlvl6Z5VAHYb20VfQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "436ad574-e468-4ea1-934f-0dea9955bbc3",
+                            SecurityStamp = "90973882-fb8b-44fa-9f24-addfce4c832f",
                             TwoFactorEnabled = false,
                             UserName = "a@a.a"
                         });
@@ -580,6 +580,16 @@ namespace Models.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Utilisateurs");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Matricule = "1111111",
+                            Nom = "a",
+                            Prenom = "a",
+                            UserId = "11111111-1111-1111-1111-111111111111"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
