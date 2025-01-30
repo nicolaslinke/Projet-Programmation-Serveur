@@ -1,5 +1,6 @@
 ﻿using LapinCouvert.Data;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Models.Models;
 using System.Numerics;
 
@@ -30,5 +31,13 @@ namespace LapinCouvertAPI.Services
 
             return u;
         }
+
+        public async Task<Utilisateur> GetUtilisateurByUserId(string userId)
+        {
+            Utilisateur utilisateur = await _dbContext.Utilisateurs
+                .FirstOrDefaultAsync(u => u.UserId == userId);
+            return utilisateur;
+        }
+
     }
 }
